@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "CTRL_Player",
+		uint64 ResourceId = 56ce1bca416c6bb8,
+	},
+},

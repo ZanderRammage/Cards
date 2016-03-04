@@ -1,0 +1,57 @@
+class CTRL_Player : ZilchComponent
+{
+    var Movement : Real3;
+    
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var up = Zero.Keyboard.KeyIsDown(Keys.W) || Zero.Keyboard.KeyIsDown(Keys.Up);
+        var down = Zero.Keyboard.KeyIsDown(Keys.S) || Zero.Keyboard.KeyIsDown(Keys.Down);
+        var left = Zero.Keyboard.KeyIsDown(Keys.A) || Zero.Keyboard.KeyIsDown(Keys.Left);
+        var right = Zero.Keyboard.KeyIsDown(Keys.D) || Zero.Keyboard.KeyIsDown(Keys.Right);
+        var runmod = Zero.Keyboard.KeyIsDown(Keys.Shift) || Zero.Keyboard.KeyIsDown(Keys.Z);
+        var run = false;
+        
+        if(up)
+        {
+            this.Movement.Y += 0.1;
+        }
+        if(down)
+        {
+            this.Movement.Y -= 0.1;
+        }
+        if(left)
+        {
+            this.Movement.X -= 0.1;
+        }
+        if(right)
+        {
+            this.Movement.X += 0.1;
+        }
+        
+        if(up && runmod)
+        {
+            this.Movement.Y += 0.2;
+        }
+        if(down && runmod)
+        {
+            this.Movement.Y -= 0.2;
+        }
+        if(left && runmod)
+        {
+            this.Movement.X -= 0.2;
+        }
+        if(right && runmod)
+        {
+            this.Movement.X += 0.2;
+        }
+        
+        this.Owner.Transform.Translation = this.Movement;
+    }
+}
